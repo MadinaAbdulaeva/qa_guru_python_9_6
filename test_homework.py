@@ -33,9 +33,9 @@ def test_dark_theme_by_time_and_user_choice():
         is_dark_theme = True
     elif dark_theme_enabled_by_user is None:  # автоматический выбор темы
         if datetime.time(6) < current_time < datetime.time(22):  # автовыбор и время при этом - от 6 утра до 22 вечера
-            dark_theme_enabled_by_user = False
+            is_dark_theme = False
         else:  # автовыбор и время при этом - от 22 вечера до 6 утра
-            dark_theme_enabled_by_user = True
+            is_dark_theme = True
     else:  # пользователь выключил темную тему
         is_dark_theme = False
 
@@ -83,13 +83,13 @@ def test_find_suitable_user():
     # "Open Browser [Chrome]"
 
 
-def test_new_func(func, *args):
+def new_func(func, *args):
     # step1 = func.__name__
-    # step2 = step1.replace('_', ' ')    #замена подчеркивания на пробел
+    # step2 = step1.replace('_', ' ')    #замена подчеркивания на пробел в имени функции
     # step3 = step2.title()              #каждое слово начинается с заглавной буквы
     part1 = func.__name__.replace('_', ' ').title()
     part2 = ', '.join([*args])
-    result = f' {part1} [{part2}]'
+    result = f'{part1} [{part2}]'
     print(result)
     return result
 
@@ -99,15 +99,15 @@ def test_readable_function():
         find_registration_button_on_login_page(page_url="https://companyname.com/login", button_text="Register")
 
 def open_browser(browser_name):
-    actual_result = test_new_func(open_browser, browser_name)
+    actual_result = new_func(open_browser, browser_name)
     assert actual_result == "Open Browser [Chrome]"
 
 
 def go_to_companyname_homepage(page_url):
-    actual_result = test_new_func(go_to_companyname_homepage, page_url)
+    actual_result = new_func(go_to_companyname_homepage, page_url)
     assert actual_result == "Go To Companyname Homepage [https://companyname.com]"
 
 
 def find_registration_button_on_login_page(page_url, button_text):
-    actual_result = test_new_func(find_registration_button_on_login_page, page_url, button_text)
+    actual_result = new_func(find_registration_button_on_login_page, page_url, button_text)
     assert actual_result == "Find Registration Button On Login Page [https://companyname.com/login, Register]"
